@@ -1,0 +1,38 @@
+{
+  "name" : "Expogo",
+  "testType" : "MULTI_NUMBER",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "4\n2 3\n-2 -3\n3 0\n-1 1",
+    "output" : "Case #1: SEN\nCase #2: NWS\nCase #3: EE\nCase #4: IMPOSSIBLE\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "2\n38 53\n14 23",
+    "index" : 1,
+    "active" : true
+  } ],
+  "location" : "src/main",
+  "vmArgs" : "-Xmx256m -Xss64m",
+  "mainClass" : "Solution",
+  "taskClass" : "test.on2020_04.on2020_04_19_GCJR1B.Expogo.Expogo",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.04.19",
+  "contestName" : "GCJR1B",
+  "truncate" : true,
+  "inputClass" : "java.util.Scanner",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

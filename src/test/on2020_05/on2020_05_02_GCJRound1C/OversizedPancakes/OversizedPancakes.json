@@ -1,0 +1,34 @@
+{
+  "name" : "OversizedPancakes",
+  "testType" : "MULTI_NUMBER",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "4\n1 3\n1\n5 2\n10 5 359999999999 123456789 10\n2 3\n8 4\n3 2\n1 2 3",
+    "output" : "Case #1: 2\nCase #2: 0\nCase #3: 1\nCase #4: 1",
+    "index" : 0,
+    "active" : true
+  } ],
+  "location" : "src/main",
+  "vmArgs" : "-Xmx256m -Xss64m",
+  "mainClass" : "Solution",
+  "taskClass" : "test.on2020_05.on2020_05_02_GCJRound1C.OversizedPancakes.OversizedPancakes",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.05.02",
+  "contestName" : "GCJRound1C",
+  "truncate" : true,
+  "inputClass" : "java.util.Scanner",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

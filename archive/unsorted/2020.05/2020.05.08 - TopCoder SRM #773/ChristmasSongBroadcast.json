@@ -1,0 +1,36 @@
+{
+  "name" : "ChristmasSongBroadcast",
+  "signature" : {
+    "name" : "minimizeCost",
+    "result" : "int",
+    "arguments" : [ "int", "int[]", "int[]", "String[]" ],
+    "argumentNames" : [ "T", "A", "B", "directCost" ]
+  },
+  "tests" : [ {
+    "arguments" : [ "1000000007", "1 10 100", "7 7 7", "-AAфA-AфAA-" ],
+    "result" : "0",
+    "index" : 0,
+    "active" : true
+  }, {
+    "arguments" : [ "1", "1 1 1", "1600 1500 1700", "-01ф0-Aф1A-" ],
+    "result" : "1597",
+    "index" : 1,
+    "active" : true
+  }, {
+    "arguments" : [ "2", "100 100 100 100", "0 35 999999910 123456789", "-01zф0-Azф1A-zфzzz-" ],
+    "result" : "160",
+    "index" : 2,
+    "active" : true
+  }, {
+    "arguments" : [ "1", "47", "1000000006", "-" ],
+    "result" : "1000000006",
+    "index" : 3,
+    "active" : true
+  } ],
+  "date" : "2020.05.08",
+  "contestName" : "TopCoder SRM #773",
+  "testClasses" : [ ],
+  "fqn" : "main.ChristmasSongBroadcast",
+  "failOnOverflow" : false,
+  "memoryLimit" : "256M"
+}
