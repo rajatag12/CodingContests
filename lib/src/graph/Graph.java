@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -36,9 +37,29 @@ public class Graph {
         return size;
     }
 
+    public long[][] toAdj(boolean assignZeroToSelf, long inf) {
+        long[][] res = new long[size][size];
+        if (inf != 0) {
+            for (long[] r : res) {
+                Arrays.fill(r, inf);
+            }
+        }
+        if (assignZeroToSelf) {
+            for (int i = 0; i < size; i++) {
+                res[i][i] = 0;
+            }
+        }
+        for (int i = 0; i < size; i++) {
+            for (Edge e : adj[i].get()) {
+                res[i][e.to] = e.w;
+            }
+        }
+        return res;
+    }
+
     static class Edge implements Comparable<Edge> {
         int from, to;
-        int w;
+        long w;
 
         private Comparator<Edge> comparator;
 
@@ -57,7 +78,7 @@ public class Graph {
             if (comparator != null) {
                 return comparator.compare(this, edge);
             }
-            return w - edge.w;
+            return Long.compare(w, edge.w);
         }
     }
 
