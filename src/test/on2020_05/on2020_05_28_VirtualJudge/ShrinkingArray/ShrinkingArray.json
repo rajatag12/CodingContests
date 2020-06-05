@@ -1,0 +1,49 @@
+{
+  "name" : "ShrinkingArray",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "5\n4 3 2 2 3",
+    "output" : "2",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "7\n3 3 4 4 4 3 3",
+    "output" : "2",
+    "index" : 1,
+    "active" : true
+  }, {
+    "input" : "3\n1 3 5",
+    "output" : "3",
+    "index" : 2,
+    "active" : true
+  }, {
+    "input" : "1\n1000",
+    "output" : "1",
+    "index" : 3,
+    "active" : true
+  } ],
+  "location" : "src/main",
+  "vmArgs" : "-Xmx256m -Xss64m",
+  "mainClass" : "Main",
+  "taskClass" : "test.on2020_05.on2020_05_28_VirtualJudge.ShrinkingArray.ShrinkingArray",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.05.28",
+  "contestName" : "VirtualJudge",
+  "truncate" : true,
+  "inputClass" : "java.util.Scanner",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

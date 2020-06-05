@@ -1,2 +1,5 @@
 .idea/*
-
+*.bak
+out/production/CodingContests/META-INF/CodingContests.kotlin_module
+CodingContests.iml
+out/*
