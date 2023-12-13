@@ -1,195 +1,7 @@
 import 'package:collection/collection.dart';
+import 'dart:math';
 
 void main() {
-  String input = '''
-  seeds: 2494933545 159314859 4045092792 172620202 928898138 554061882 2740120981 81327018 2031777983 63513119 2871914181 270575980 2200250633 216481794 3289604059 25147787 3472625834 10030240 260990830 232636388
-
-seed-to-soil map:
-3272284283 2724782980 1022683013
-138187491 4195038636 99928660
-2359623759 797621236 127984779
-662451929 2224466386 266466256
-928918185 714355413 83265823
-1012184008 3891516474 303522162
-3063776460 1098322140 208507823
-2194238166 1306829963 50525692
-357106588 2091837170 132629216
-2244763858 2490932642 114859901
-2050187685 3747465993 144050481
-489735804 925606015 172716125
-2487608538 138187491 576167922
-238116151 2605792543 118990437
-1315706170 1357355655 734481515
-
-soil-to-fertilizer map:
-4265669768 2142212766 29297528
-2030756625 2171510294 69737894
-3038084234 3411621093 262803613
-2410534622 3266307064 145314029
-2667304792 2241248188 370779442
-2100494519 3921619167 310040103
-3611390334 2612027630 654279434
-2555848651 2030756625 111456141
-733063720 869238953 195075492
-3300887847 4231659270 63308026
-3364195873 3674424706 247194461
-928139212 733063720 136175233
-
-fertilizer-to-water map:
-0 772139976 154052576
-909628165 428370542 51644443
-3172969725 4109584032 185383264
-1116931128 1046566515 14194115
-223777814 10055892 255169216
-2512535520 1229983026 60386000
-3109777744 3899207072 16374329
-4030761870 3829858282 12540292
-828135093 718323602 53816374
-2358450176 2554590817 154085344
-3126152073 3152512175 46817652
-4043302162 3842398574 56808498
-3694349069 3493296400 336412801
-770911368 661099877 57223725
-3574254366 3032417472 120094703
-2689829955 2124052738 139986329
-3358352989 1925653441 3542661
-154052576 1060760630 69725238
-3460616091 3829709201 149081
-881951467 480014985 9494517
-1777535488 3915581401 135358522
-2829816284 1290369026 84715328
-478947030 489509502 171590375
-2686813330 1226966401 3016625
-3361895650 3199329827 98720441
-1226966401 1375084354 550569087
-3515610257 4050939923 58644109
-650537405 926192552 120373963
-4100110660 1929196102 194856636
-1912894010 2708676161 323741311
-3460765172 2264039067 54845085
-898932898 0 10055892
-891445984 265225108 7486914
-2914531612 3298050268 195246132
-2572921520 2318884152 113891810
-961272608 272712022 155658520
-908988790 1130485868 639375
-2236635321 2432775962 121814855
-
-water-to-light map:
-2821176146 2286693663 106119314
-3822234587 2463633329 180779736
-1725724347 2842879211 104224606
-3308097155 4172728180 122239116
-3299768179 2834550235 8328976
-525232540 357109336 38255672
-751267412 803626289 867213460
-2181067610 2392812977 70820352
-2251887962 2644413065 134698828
-3430336271 3994876090 163182805
-357109336 395365008 62712446
-3646455511 2158365540 128328123
-3084834769 2947103817 214933410
-1618480872 3954660777 40215313
-1673365470 751267412 52358877
-2927295460 3797121468 157539309
-2386586790 1723776184 434589356
-3774783634 2779111893 47450953
-4003014323 3162037227 291952973
-419821782 458077454 105410758
-3593519076 1670839749 52936435
-1658696185 4158058895 14669285
-2173080221 2826562846 7987389
-1829948953 3453990200 343131268
-
-light-to-temperature map:
-457330729 4090205185 204762111
-2982196520 3401667644 30193953
-2238727594 3778270640 263367024
-2540710222 1921368253 380651678
-2224576409 4041637664 14151185
-1803946096 1170025919 125923944
-947791690 3069412788 65888847
-3354708582 3597834895 180435745
-1173448701 516297801 630497395
-4079424710 2899828022 88028778
-1929870040 1295949863 294706369
-928458849 495946333 19332841
-3145865299 515279174 1018627
-3071616223 2825578946 74249076
-3012390473 3431861597 52676537
-0 156654134 174053721
-1013680537 1590656232 159768164
-2502094618 457330729 38615604
-4167453488 3484538134 113296761
-4058703342 3048691420 20721368
-3146883926 1750424396 164394644
-662092840 3135301635 266366009
-174053721 0 156654134
-4280750249 4055788849 14217047
-3311278570 1146795196 23230723
-3334509293 4070005896 20199289
-3535144327 2302019931 523559015
-3065067010 1914819040 6549213
-2921361900 2987856800 60834620
-
-temperature-to-humidity map:
-19014508 1616728169 261978440
-479364011 879054632 183139707
-3422279791 4197415651 97551645
-2947838505 2859883311 474441286
-3922771609 3441941550 130194267
-1538347549 1285663854 77335299
-4074125861 3334324597 17231539
-2692139672 3923798143 165313419
-3867887507 3572135817 45827004
-4091357400 2695950683 148956394
-280992948 874337342 4717290
-3585981058 4137845928 59569723
-1194193608 267159640 344153941
-3645550781 2226309992 39998882
-2606341883 3617962821 85797789
-2452453972 3769910232 153887911
-4279991062 2844907077 14976234
-4240313794 4089111562 39677268
-285710238 0 193653773
-662503718 1585706204 31021965
-4052965876 2266308874 21159985
-2226309992 2287468859 226143980
-0 248145132 19014508
-3685549663 2513612839 182337844
-2857453091 3351556136 90385414
-1139702249 193653773 54491359
-3913714511 4128788830 9057098
-916232734 1062194339 223469515
-1615682848 611313581 263023761
-693525683 1362999153 222707051
-3519831436 3703760610 66149622
-
-humidity-to-location map:
-3722067319 3568864729 46052123
-761939125 1263883488 182519766
-3952597071 3400791743 168072986
-1928058 204065059 218803536
-1797120632 863951513 248903371
-3409129274 3614916852 109595510
-0 1261955430 1928058
-3854871689 2940386871 97725382
-3518724784 3898809601 159455982
-220731594 1446403254 100124613
-944458891 1813379640 207908225
-3194065032 4058265583 117770911
-3059317673 3222157831 134747359
-3678180766 3356905190 43886553
-3375153977 3124864500 33975297
-2940386871 4176036494 118930802
-1152367116 2021287865 24736138
-3311835943 3158839797 63318034
-320856207 422868595 441082918
-1593055573 0 204065059
-4120670057 3724512362 174297239
-1177103254 1112854884 149100546
-1326203800 1546527867 266851773
-3768119442 3038112253 86752247''';
   String test = '''
 seeds: 79 14 55 13
 
@@ -224,99 +36,223 @@ temperature-to-humidity map:
 humidity-to-location map:
 60 56 37
 56 93 4''';
-  
-  final lines = input.split('\n');
+
+  final lines = test.split('\n');
   final numExp = RegExp(r'\d+');
-  List<int> seeds = numExp.allMatches(lines[0]).map((m) => int.parse(m[0]!)).toList();
+  List<int> seeds =
+      numExp.allMatches(lines[0]).map((m) => int.parse(m[0]!)).toList();
   List<Mapping> mappings = [];
-  
+
   // input
   lines.sublist(1).forEach((line) {
     if (line.isEmpty) return;
     if (line.trim().startsWith(RegExp(r'[a-z]'))) {
-//       if (mappings.isNotEmpty) mappings.last.printRanges();
-//       print('--');
+
       mappings.add(Mapping());
       return;
     }
-    final intValues = numExp.allMatches(line).map((m) => int.parse(m[0]!)).toList();
+    final intValues =
+        numExp.allMatches(line).map((m) => int.parse(m[0]!)).toList();
     mappings.last.ranges.add(Range(intValues));
     mappings.last.sortRanges();
   });
-//   mappings.last.printRanges();
-  
+
+  // pre-compute
+  final precomputedMapping = compressMappingsFromSeed(mappings);
   // compute
-  int res = part2(seeds, mappings);
-  
+  int res = part2(seeds, precomputedMapping);
+
   // result
   print('res=$res');
 }
 
 int part1(List<int> seeds, List<Mapping> mappings) {
   int res = 1 << 30;
-  seeds.forEach((s) {
-//     print('seed: $s');
+  for (int s in seeds) {
     int v = s;
-    mappings.forEach((m) {
+    for (Mapping m in mappings) {
       v = m.getDest(v);
-//       print(v);
-    });
+    }
     if (v < res) res = v;
-  });
+  }
   return res;
 }
 
-int part2(List<int> seeds, List<Mapping> mappings) {
+int part2(List<int> seeds, Mapping mapping) {
+  // mapping.printRanges();
   int res = 1 << 30;
   for (int i = 0; i < seeds.length; i += 2) {
-    for (int s = seeds[i]; s < seeds[i] + seeds[i+1]; ++s) {
-//       print('seed: $s');
-      int v = s;
-      mappings.forEach((m) {
-        v = m.getDest(v);
-//         print(v);
-      });
-      if (res > v) res = v;
+    int first = seeds[i];
+    int last = seeds[i] + seeds[i + 1] - 1;
+    int ri = 0;
+    while (first <= last && ri < mapping.ranges.length) {
+      // print('first: $first, last: $last, ri: $ri');
+      final r = mapping.ranges[ri];
+      if (r.srcStart > first) {
+        // first before r.start
+        res = min(res, first);
+        first = min(r.srcStart, last);
+      } else if (first > r.srcLast) {
+        // first after r.last
+        ri++;
+      } else {
+        // first intersects with r
+        res = min(res, first + r.offset);
+        first = min(r.srcLast + 1, last + 1);
+      }
+    }
+    if (ri == mapping.ranges.length) {
+      print('breakkkkkkkkkk');
+      res = min(res, first);
     }
   }
   return res;
 }
 
-Mapping precomputeMappings(List<Mapping> mappings) {
-  final res = Mapping();
-  mappings.reversed.forEach((m) {
+Mapping compressMappingsFromSeed(List<Mapping> mappings) {
+  Mapping res = mappings[0];
+  for (final m in mappings) {
+    if (res == m) {
+      continue;
+    }
+
+    final next = Mapping();
+    for (final r in res.ranges) {
+      int first = r.srcStart + r.offset;
+      int last = r.srcLast + r.offset;
+      m.firstRange();
+      while (first <= last) {
+        if (first < m.curRange.srcStart) {
+          final nextlast = min(m.curRange.srcStart - 1, last);
+          next.ranges
+              .add(Range([first, first - r.offset, nextlast - first + 1]));
+          first = nextlast + 1;
+        } else if (first > m.curRange.srcLast) {
+          if (m.hasMoreRanges) {
+            m.nextRange();
+          } else {
+            break;
+          }
+        } else {
+          final nextlast = min(last, m.curRange.srcLast);
+          next.ranges.add(Range([
+            first + m.curRange.offset,
+            first - r.offset,
+            nextlast - first + 1
+          ]));
+          first = nextlast + 1;
+        }
+      }
+
+      if (first <= last) {
+        next.ranges
+            .add(Range([first, first - r.offset, last - first + 1]));
+      }
+    }
+
+    next.sortRanges();
+    res = next;
+  }
+
+  return res;
+}
+
+Mapping compressMappings(List<Mapping> mappings) {
+  var res = Mapping();
+  for (final m in mappings.reversed) {
+    m.sortRanges();
+    if (m.ranges.first.srcStart != 0) {
+      m.ranges.insert(0, Range([0, 0, m.ranges.first.srcStart]));
+    }
+    m.ranges.add(
+        Range([m.ranges.last.srcLast + 1, m.ranges.last.srcLast + 1, 1 << 35]));
     if (res.ranges.isEmpty) {
       res.ranges = m.ranges;
-      return;
+      continue;
     }
-    
-  });
+    final next = Mapping();
+    for (Range r in m.ranges) {
+      final lastMapping = res.ranges;
+      int first = r.srcStart + r.offset;
+      int last = r.srcLast + r.offset;
+      int ri = 0;
+      while (first <= last && ri < lastMapping.length) {
+        if (first < lastMapping[ri].srcStart) {
+          int nextLast = min(last, lastMapping[ri].srcStart - 1);
+          next.ranges
+              .add(Range([first, first - r.offset, nextLast - first + 1]));
+          first = nextLast + 1;
+        } else if (first > lastMapping[ri].srcLast) {
+          print('breakkkkkkk');
+          ri++;
+        } else {
+          int nextLast = min(last, lastMapping[ri].srcLast);
+          next.ranges.add(Range([
+            first + lastMapping[ri].offset,
+            first - r.offset,
+            nextLast - first + 1
+          ]));
+          first = nextLast + 1;
+        }
+      }
+      if (ri == lastMapping.length) {
+        next.ranges.add(Range([first, first - r.offset, last - first + 1]));
+      }
+    }
+    next.sortRanges();
+    // next.printRanges();
+    // print('--');
+    res = next;
+  }
+
   return res;
 }
 
 class Mapping {
   List<Range> ranges = [];
-  
+
+  int _ri = 0;
+
+  Range get curRange => ranges[_ri];
+  void firstRange() => _ri = 0;
+  void nextRange() => _ri++;
+  bool get hasMoreRanges => _ri < numRanges - 1;
+  int get numRanges => ranges.length;
+
   void sortRanges() => ranges.sort();
-  
-  void printRanges() => ranges.forEach((r) => print(r));
-  
+
+  void printRanges() => ranges.forEach(print);
+
   int getDest(int src) {
-    int x = lowerBound(List.generate(ranges.length, (i) => i), src, compare: (i, s) => ranges[i].srcStart + ranges[i].range - 1 - s);
-//     print('src: $src; x=$x');
+    int x = lowerBound(List.generate(ranges.length, (i) => i), src,
+        compare: (i, s) => ranges[i].srcStart + ranges[i].range - 1 - s);
+
     if (x == ranges.length) return src;
-    if (ranges[x].srcStart <= src) return src + (ranges[x].destStart - ranges[x].srcStart);
+    if (ranges[x].srcStart <= src) {
+      return src + (ranges[x].destStart - ranges[x].srcStart);
+    }
     return src;
   }
 }
 
 class Range implements Comparable<Range> {
-  Range(List<int> input): srcStart = input[1], destStart = input[0], range = input[2];
+  Range(List<int> input)
+      : srcStart = input[1],
+        destStart = input[0],
+        range = input[2];
   int srcStart;
   int destStart;
   int range;
+
+  int get srcLast => srcStart + range - 1;
+
+  int get offset => destStart - srcStart;
+
+  @override
   int compareTo(Range other) {
     return srcStart - other.srcStart;
   }
+
+  @override
   String toString() => '$destStart $srcStart $range';
 }
